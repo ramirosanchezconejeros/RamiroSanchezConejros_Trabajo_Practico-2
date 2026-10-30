@@ -8,12 +8,18 @@ def leer_json(ruta_archivo):
             datos_no_procesados=json.load(archivo)
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"error en leer el json; {e}")
+        return[]
 
     lista_satelites=[]
     for i in datos_no_procesados:
-        nombre=i.get("nombre")
-        numero=i.get("numero")
-        latitud, longitud, altitud=obtener_posicion(numero)
+        #print(f"diccionarios de satelites:", i)
+        nombre=i.get("OBJECT_NAME")
+        numero=i.get("NORAD_CAT_ID")
+        #print(f"busqueda de satelite: {nombre} de numero: {numero}, tipo {type(numero)}")
+        try:
+            latitud, longitud, altitud=obtener_posicion(i)
+        except Exception as e:
+            print(f"no se calculo la posicion del satelite {nombre}: {e}")
         try:
             satelite=Satelite(nombre, numero, latitud, longitud, altitud)
             lista_satelites.append(satelite)
