@@ -20,6 +20,33 @@ def test_de_orbita_invalida():
     with pytest.raises(ValueError):
         Satelite("invalido",5,0,0,99)
 
-def test_limite_de_longuitud():
-    assert Satelite("satlon",6,0,0,0).limite_de_longitud()
+def test_limite_de_longuitud_invalida():
+    with pytest.raises(ValueError):
+        Satelite("satLon",6,0,190,500)
 
+def test_limite_de_latitud_invalida():
+    with pytest.raises(ValueError):
+        Satelite("satLat",7,95,0,500)
+
+def test_nombre_existente_invalido():
+    with pytest.raises(ValueError):
+        Satelite("",8,0,0,500)
+    with pytest.raises(ValueError):
+        Satelite("  ",9,0,0,500)
+
+def test_validar_numero_invalido():
+    with pytest.raises(ValueError):
+        Satelite("satNum","123",0,0,500)
+
+def test_dentro_de_zona():
+    sat=Satelite("satZona",10,-70,-30,500)
+    sat2=Satelite("satZona2",11,-50,-20,500)
+    assert sat.dentro_de_zona(-76.30, -46.13, -66.30, -35.13) is True
+    assert sat2.dentro_de_zona(-76.30, -46.13, -66.30, -35.13) is False
+
+def test_mostrar_forma_cadena():
+    sat=Satelite("satCad",12,0,0,500)
+    cadena=sat.mostrar_forma_cadena()
+    assert "satCad" in cadena
+    assert "12" in cadena
+    assert "LEO" in cadena
