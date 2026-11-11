@@ -50,4 +50,6 @@ def test_crear_catalogo():
     catalogo=crear_catalogo(datos_verdes)
     assert len(catalogo)==1
     assert catalogo[0].nombre =="LCS 1"
-    
+    assert len(catalogo)==0
+
+#def test_crear_catalogo_invalido():
