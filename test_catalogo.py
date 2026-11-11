@@ -28,3 +28,26 @@ def test_filtro_de_zona_afuera():
     sat=Satelite("satFueraZona",2,-80,-50,500)
     zona=filtro_de_zona([sat], -76.30, -46.13, -66.30, -36.13)
     assert len(zona)==0
+
+def test_crear_catalogo():
+    datos_verdes=[ {"OBJECT_NAME": "LCS 1",
+  "OBJECT_ID": "1965-034C",
+  "EPOCH": "2026-10-14T05:23:16.941696",
+  "MEAN_MOTION": 9.89310992,
+  "ECCENTRICITY": 0.00109039,
+  "INCLINATION": 32.1401,
+  "RA_OF_ASC_NODE": 254.3932,
+  "ARG_OF_PERICENTER": 186.1791,
+  "MEAN_ANOMALY": 173.8573,
+  "EPHEMERIS_TYPE": 0,
+  "CLASSIFICATION_TYPE": "U",
+  "NORAD_CAT_ID": 1361,
+  "ELEMENT_SET_NO": 999,
+  "REV_AT_EPOCH": 22167,
+  "BSTAR": 0.0011283058,
+  "MEAN_MOTION_DOT": 1.7e-07,
+  "MEAN_MOTION_DDOT": 0}]
+    catalogo=crear_catalogo(datos_verdes)
+    assert len(catalogo)==1
+    assert catalogo[0].nombre =="LCS 1"
+    
