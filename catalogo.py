@@ -6,26 +6,26 @@ def leer_json(ruta_archivo):
     try:
         with open(ruta_archivo, 'r') as archivo:
             datos_no_procesados=json.load(archivo)
+            return datos_no_procesados
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"error en leer el json; {e}")
         return[]
-
+    
+def crear_catalogo(datos_no_procesados):
     lista_satelites=[]
     for i in datos_no_procesados:
-        #print(f"diccionarios de satelites:", i)
-        nombre=i.get("OBJECT_NAME")
-        numero=i.get("NORAD_CAT_ID")
-        #print(f"busqueda de satelite: {nombre} de numero: {numero}, tipo {type(numero)}")
         try:
+            print(f"diccionarios de satelites:", i)
+            nombre=i["OBJECT_NAME"]
+            numero=i["NORAD_CAT_ID"]
             latitud, longitud, altitud=obtener_posicion(i)
-        except Exception as e:
-            print(f"no se calculo la posicion del satelite {nombre}: {e}")
-        try:
             satelite=Satelite(nombre, numero, latitud, longitud, altitud)
             lista_satelites.append(satelite)
         except ValueError as error:
-            print(f"no se pudo cargar el satelite {nombre}: {numero} -{error}")
+            nombre_de_sat_invalido=i["OBJECT_NAME"]
+            print(f"no se pudo cargar el satelite {nombre_de_sat_invalido}: {error}")
     return lista_satelites
+
 
 def resumen(satelites):
     tipo_orbitas={"LEO": [], "MEO": [], "GEO": [], "HEO": []}

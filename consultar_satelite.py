@@ -1,5 +1,5 @@
 import sys
-from catalogo import leer_json, resumen, filtro_de_zona
+from catalogo import leer_json,crear_catalogo, resumen, filtro_de_zona
 
 def main():
     if len(sys.argv)<3:
@@ -7,7 +7,8 @@ def main():
         sys.exit(1)
     ruta_archivo=sys.argv[1]
     tipo_consulta=sys.argv[2].lower()
-    satelites=leer_json(ruta_archivo)
+    datos_verdes=leer_json(ruta_archivo)
+    satelites=crear_catalogo(datos_verdes)
     
     if tipo_consulta=="resumen":
         print("se mostrata el resumen de las  orbitas")
