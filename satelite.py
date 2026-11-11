@@ -43,7 +43,6 @@ class Satelite:
             raise ValueError("el numero de catalago debe ser un numeor entero")
         
     def dentro_de_zona(self, longitud_minima, latitud_minima, longitud_maxima, latitud_maxima):
-        #print(f"Satélite {self.nombre}: lon={self.longitud}, lat={self.latitud} | Límites: X({longitud_minima} a {longitud_maxima}), Y({latitud_minima} a {latitud_maxima})")
         if longitud_minima <= self.longitud <=longitud_maxima and latitud_minima <= self.latitud <=latitud_maxima:
             return True
         else:
