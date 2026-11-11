@@ -15,7 +15,6 @@ def crear_catalogo(datos_no_procesados):
     lista_satelites=[]
     for i in datos_no_procesados:
         try:
-            print(f"diccionarios de satelites:", i)
             nombre=i["OBJECT_NAME"]
             numero=i["NORAD_CAT_ID"]
             latitud, longitud, altitud=obtener_posicion(i)
