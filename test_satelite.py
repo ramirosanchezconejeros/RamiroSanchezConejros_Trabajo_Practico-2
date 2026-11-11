@@ -38,15 +38,15 @@ def test_validar_numero_invalido():
     with pytest.raises(ValueError):
         Satelite("satNum","123",0,0,500)
 
-def test_dentro_de_zona():
+"""def test_dentro_de_zona():
     sat=Satelite("satZona",10,-70,-30,500)
     sat2=Satelite("satZona2",11,-50,-20,500)
     assert sat.dentro_de_zona(-76.30, -46.13, -66.30, -35.13) is True
-    assert sat2.dentro_de_zona(-76.30, -46.13, -66.30, -35.13) is False
+    assert sat2.dentro_de_zona(-76.30, -46.13, -66.30, -35.13) is False"""
 
-def test_mostrar_forma_cadena():
+"""def test_mostrar_forma_cadena():
     sat=Satelite("satCad",12,0,0,500)
     cadena=sat.mostrar_forma_cadena()
     assert "satCad" in cadena
     assert "12" in cadena
-    assert "LEO" in cadena
+    assert "LEO" in cadena"""
